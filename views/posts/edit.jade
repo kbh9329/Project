@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+  .container
+    if post.id
+      h1.page-header 설문지 수정
+    else
+      h1.page-header 설문지 추가
+
+    form(action = (post.id) ? "/posts/#{post.id}?_method=PUT" : "/posts", method='POST')
+      .form-group
+        label(for='title') 설문 제목
+        input.form-control(type='text', id='title', name='title', placeholder='Title', value=post.title)
+      .form-group
+        label(for='explanation') 설문 전체 설명
+        input.form-control(type='text', id='explanation', name='explanation', placeholder='Explanation', value=post.explanation)
+      .form-group
+        label(for='password') Password
+        input.form-control(type='password', id='password', name='password', placeholder='Password')
+        
+
+      hr
+      a.btn.btn-default(href='javascript:window.history.back();') 뒤로 
+      | 
+      button.btn.btn-primary(type='submit') 완료

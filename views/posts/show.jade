@@ -1,0 +1,75 @@
+extends ../layout
+
+block content
+  .container
+    //h1.page-header= post.title
+    //p
+      //b by #{post.title}
+      //| 
+      //span at #{moment(post.createdAt).format('YYYY-MM-DD HH:mm:ss')} 
+      //| 
+      //| (조회수 #{post.read})    
+
+
+    h1= post.title
+    //h3 by #{post.email}
+    //.well= post.content
+    
+    hr
+    h3 Comment(Text) (#{post.numComment})
+    table.table
+      tr
+        th email
+        th content
+        th time
+        th 응답 현황
+        th
+      each comment in comments
+        tr
+          td= comment.email
+          td
+            a(href='/posts/#{post.id}')=comment.content
+          td= moment(comment.createdAt).format('YYYY/MM/DD')
+          td
+          td
+            a.btn.btn-xs.btn-default(href='/posts/#{post.id}/edit') 수정
+            | 
+            a.btn.btn-xs.btn-default(data-id=post.id, class='delete') 삭제
+    
+    form.form-inline(action='/posts/' + post._id + '/comments', method='POST')
+      .form-group
+        label.sr-only(for='email') email
+        input.form-control(name='email', placeholder='email')
+      .form-group
+        label.sr-only(for='content') content
+        input.form-control(name='content', size=50, placeholder='content')
+      button.btn.btn-info 댓글저장
+    
+    hr
+    h3 Comment(객관식)
+
+    form.form(action='/posts/comment', method='POST')
+      input(name='post_id', value=post.id, type='hidden')
+      .form-group
+        label(for='email') email
+        input.form-control(name='email', placeholder='email')
+      .form-group
+        input(type='radio', name='content', value='1', placeholder='content')
+        label 이 설문지 어떻게 만드셨나요?
+      .form-group
+        input(type='radio', name='content', value='2')
+        label 질문하면 응답을 보통 언제해주시나요?
+      .form-group
+        input(type='radio', name='content', value='3')
+        label 감사합니다. 도움 많이 되었습니다.
+      .form-group
+        input(type='radio', name='content', value='4')
+        label 기타
+        input.form-control(name='content', size=50, placeholder='content')
+
+        
+    button.btn.btn-info 질문추가
+    
+    
+    hr
+    a.btn.btn-default(href='/posts') 목록 

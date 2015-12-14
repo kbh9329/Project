@@ -1,0 +1,22 @@
+.background {
+  margin-top: -1em;
+  background: url("/images/main.JPG");
+  background-size: cover;
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  min-height: 43em;
+  color: #fff;
+  font-size: 1.5em;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+h1{
+  font-size: 2em;
+  font-style: normal;
+  font-weight: bold;
+}
+h3{
+  font-size: 1.5em;
+  font-style: oblique;
+  font-weight: bold;
+}
